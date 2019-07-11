@@ -33,31 +33,38 @@ function equalsButtonHandler(event){
   calculationArray.push(stringNumberToPush);
   stringNumberToPush ="";
   displayArray = [];
-  var answer = calculate(calculationArray[0],calculationArray[2],calculationArray[1]);
+  var answer = calculate(calculationArray[0], calculationArray[2], calculationArray[1], calculationArray[3], calculationArray[4]);
+  //var answer = calculate(calculationArray[0],calculationArray[2],calculationArray[1]);
   displayArray.push(answer);
   updateDisplay();
 }
 function updateDisplay(){
   var displayText = displayArray.join("");
   $('#display-text').text(displayText);
+  console.log(displayText);
 }
-function calculate(num1,num2,operator){
+function calculate(num1, num2, operator, operator2, num3){
   var number1 = parseFloat(num1);
   var number2 = parseFloat(num2);
+  var number3 = parseFloat(num3);
   var result = null;
-  switch(operator){
-    case '+':
-      result = number1 + number2;
-    break;
-    case '-':
-      result = number1 - number2;
-    break;
-    case '*':
-      result = number1 * number2;
-    break;
-    case '/':
-      result = number1 / number2;
-    break;
+  if (operator === '+'){
+    result = number1 + number2;
+  } else if (operator === '-') {
+    result = number1 - number2;
+  } else if (operator === '*') {
+    result = number1 * number2;
+  } else if (operator === '/') {
+    result = number1 / number2;
+  }
+  if (operator2 === '+') {
+    result += number3;
+  } else if (operator2 === '-') {
+    result -= number3;
+  } else if (operator2 === '*') {
+    result *= number3;
+  } else if (operator2 === '/') {
+    result /= number3;
   }
   return result;
 }
